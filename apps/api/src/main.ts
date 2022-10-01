@@ -7,13 +7,13 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
-import { PrismaService } from './services/prisma.service';
+import { DataService } from './data';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   //Prisma
-  const prismaService = app.get(PrismaService);
-  await prismaService.enableShutdownHooks(app);
+  const dataService = app.get(DataService);
+  await dataService.enableShutdownHooks(app);
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
